@@ -567,7 +567,8 @@ The project will run on localhost port 3000 you can change it based on your need
 
 ## Test The project
 
-<hr>
+<br>
+<br>
 
 To test the project you should have a separate database for testing to avoid errors of changing values of the functions' returns, and to run test script run this command:
 
