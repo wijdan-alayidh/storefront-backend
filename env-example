@@ -1,0 +1,27 @@
+# ------- Development variables -------
+
+# ENV Example (dev, test, prod ...)
+ENV=dev
+# The ip of database host server Example (127.0.0.1)
+POSTGREST_HOST=
+# Database name for deplopment
+POSTGREST_DB_DEV=
+# Database User name that has privileges to access and modify database data
+POSTGREST_USER=
+# Password of the database user
+POSTGREST_PASSWORD=
+
+# ------- Test variables -----------
+
+# Database name for testing
+POSTGREST_DB_TEST=
+
+# ------- Authentication variables -------
+
+# - number of times the password will be hashed
+SALT_ROUNDS=
+# - Extra string will used in pappering step
+BCRYPT_PASSWORD=
+
+# - jwt token will be any string
+TOKEN_SECRET=
