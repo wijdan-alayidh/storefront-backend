@@ -1,5 +1,10 @@
 # Online Storefront API
 
+<br>
+<br>
+<br>
+
+
 ## API Description
 
 This API represents an online storefront to showcase their product ideas.
@@ -11,9 +16,11 @@ This Project using these technologyes:
 - Postgres as a RDBMS for porject
 - Jasmine testing framework for testing
 
+<br>
+<br>
+
 ## Getting started
 
-<hr>
 
 ### Step 1: install node and npm in your device
 
@@ -376,6 +383,7 @@ The project will run on localhost port 3000 you can change it based on your need
 
 #### Orders EndPoints
 
+<br>
 <br>
 
 - Create Order :
