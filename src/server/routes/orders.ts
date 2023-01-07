@@ -9,7 +9,7 @@ orderRouter.get("/", verifyAuthToken, orderHandler.indexOrder);
 orderRouter.get("/:id", verifyAuthToken, orderHandler.showOrder);
 orderRouter.post("/create", verifyAuthToken, orderHandler.createOrder);
 orderRouter.delete("/:id", verifyAuthToken, orderHandler.deleteOrder);
-orderRouter.put("/:id", orderHandler.updateOrder);
+orderRouter.put("/:id", verifyAuthToken, orderHandler.updateOrder);
 
 orderRouter.post("/:id/products", verifyAuthToken, orderHandler.addProduct);
 

@@ -32,12 +32,14 @@
     "@types/jsonwebtoken": "^8.5.9",
     "@types/node-fetch": "^2.6.2",
     "@types/pg": "^8.6.5",
+    "@types/supertest": "^2.0.12",
     "dotenv": "^16.0.3",
     "jasmine": "^4.5.0",
     "jasmine-spec-reporter": "^7.0.0",
     "jasmine-ts": "^0.4.0",
     "node-fetch": "^3.3.0",
     "nodemon": "^2.0.20",
+    "supertest": "^6.3.3",
     "ts-node": "^10.9.1",
     "tsc-watch": "^6.0.0"
   }

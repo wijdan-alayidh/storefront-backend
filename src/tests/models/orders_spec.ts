@@ -19,7 +19,10 @@ describe(`Order Model:
   it("3 - should have an create method", () => {
     expect(order.create).toBeDefined();
   });
-  it("4 - should have an delete method", () => {
+  it("4 - should have an update method", () => {
+    expect(order.update).toBeDefined();
+  });
+  it("5 - should have an delete method", () => {
     expect(order.delete).toBeDefined();
   });
 });

@@ -2,15 +2,15 @@
   "dev": {
     "driver": "pg",
     "host": "127.0.0.1",
-    "database": "",
-    "user": "",
-    "password": ""
+    "database": { "ENV": "POSTGREST_DB_DEV" },
+    "user": { "ENV": "POSTGREST_USER" },
+    "password": { "ENV": "POSTGREST_PASSWORD" }
   },
   "test": {
     "driver": "pg",
     "host": "127.0.0.1",
-    "database": "",
-    "user": "",
-    "password": ""
+    "database": { "ENV": "POSTGREST_DB_TEST" },
+    "user": { "ENV": "POSTGREST_USER" },
+    "password": { "ENV": "POSTGREST_PASSWORD" }
   }
 }

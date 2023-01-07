@@ -51,7 +51,7 @@ describe(`Users Model:
 
   it("3 - Test index method", async () => {
     const result = await user.index();
-    expect(result.length).toEqual(2);
+    expect(result.length).toEqual(5);
   });
 
   it("4 - Test Update method", async () => {

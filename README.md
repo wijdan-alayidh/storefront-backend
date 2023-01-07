@@ -1,9 +1,6 @@
 # Online Storefront API
 
 <br>
-<br>
-<br>
-
 
 ## API Description
 
@@ -17,10 +14,8 @@ This Project using these technologyes:
 - Jasmine testing framework for testing
 
 <br>
-<br>
 
 ## Getting started
-
 
 ### Step 1: install node and npm in your device
 
@@ -42,7 +37,143 @@ After cloning the repo to your device move to the project Folder and run this co
 
 ### Step 4 : Create Two databases in your local:
 
-one of databases for development and the other for testing
+one of databases for development and the other for testing.
+This project uses postgres RDBMS to manage databases you can use postgres or any type of RDBMS to create and manage the project database
+
+### Database creation instruction:
+
+- start postgres server : by this command → `brew services start postgresql`
+- Postgres Database will use -> `5432 Port` to start running
+
+#### To database creation follow these steps:
+
+- 1 - Open postgres by following this command:
+  `psql postgres`
+- 2 - create two databases ( development, testing ) by following this command:
+  `CREATE DATABASE database_name;`
+  Example ->
+  `CREATE DATABASE fantasy_worlds_dev;`
+- 3 - Create user to access and manage the datavase by this command:
+  `CREATE USER user_name WITH PASSWORD 'password123';`
+  Example ->
+  `CREATE USER full_stack_user WITH PASSWORD 'password123';`
+- 4 - Give the created user all privileges to the database
+  `GRANT ALL PRIVILEGES ON DATABASE database_name TO user_name;`
+  Example ->
+  `GRANT ALL PRIVILEGES ON DATABASE fantasy_worlds_dev TO full_stack_user;`
+
+#### Database migration :
+
+After you have, complete databases creation all you have to do is run the database migration command to create the project database structure.
+
+- Migration command : `db-migrate up`
+- If you want rollback of migration use this command: `db-migrate down`
+
+#### Database schemas
+
+This project need four tables in database to run:
+
+Database Tables:
+
+```
+
+Schema | Name           | Type  | Owner
+--------+----------------+-------+------------
+public | migrations     | table | store_user
+public | order_products | table | store_user
+public | orders         | table | store_user
+public | products       | table | store_user
+public | users          | table | store_user
+
+```
+
+(5 rows)
+
+##### Users Table:
+
+- Table description : users table will have store user information (firstname , lastname , username, password).
+- Table Schema :
+
+```
+
+                                     Table "public.users"
+  Column   |         Type          | Collation | Nullable |              Default
+-----------+-----------------------+-----------+----------+-----------------------------------
+ id        | integer               |           | not null | nextval('users_id_seq'::regclass)
+ firstname | character varying(50) |           | not null |
+ lastname  | character varying(50) |           | not null |
+ username  | character varying(60) |           | not null |
+ password  | character varying     |           |          |
+Indexes:
+    "users_pkey" PRIMARY KEY, btree (id)
+Referenced by:
+    TABLE "orders" CONSTRAINT "orders_user_id_fkey" FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+
+```
+
+##### Products Table:
+
+- Table description : products table will have products of store (name , price , category).
+- Table Schema :
+
+```
+
+                                     Table "public.products"
+  Column  |          Type          | Collation | Nullable |               Default
+----------+------------------------+-----------+----------+--------------------------------------
+ id       | integer                |           | not null | nextval('products_id_seq'::regclass)
+ name     | character varying(255) |           | not null |
+ price    | integer                |           | not null |
+ category | character varying(60)  |           |          |
+Indexes:
+    "products_pkey" PRIMARY KEY, btree (id)
+Referenced by:
+    TABLE "order_products" CONSTRAINT "order_products_product_id_fkey" FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+
+
+```
+
+##### Orders Table:
+
+- Table description : orders table will have orders information (status , user).
+- Table Schema :
+
+```
+                                    Table "public.orders"
+ Column  |         Type          | Collation | Nullable |              Default
+---------+-----------------------+-----------+----------+------------------------------------
+ id      | integer               |           | not null | nextval('orders_id_seq'::regclass)
+ status  | character varying(64) |           | not null |
+ user_id | bigint                |           |          |
+Indexes:
+    "orders_pkey" PRIMARY KEY, btree (id)
+Foreign-key constraints:
+    "orders_user_id_fkey" FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+Referenced by:
+    TABLE "order_products" CONSTRAINT "order_products_order_id_fkey" FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE
+
+```
+
+##### Order Products (JOIN) table
+
+- Table description : is a join table that will use to create a user cart this table will join order with products table
+- Table Schema :
+
+```
+                              Table "public.order_products"
+   Column   |  Type   | Collation | Nullable |                  Default
+------------+---------+-----------+----------+--------------------------------------------
+ id         | integer |           | not null | nextval('order_products_id_seq'::regclass)
+ quantity   | integer |           |          |
+ order_id   | bigint  |           |          |
+ product_id | bigint  |           |          |
+Indexes:
+    "order_products_pkey" PRIMARY KEY, btree (id)
+Foreign-key constraints:
+    "order_products_order_id_fkey" FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE
+    "order_products_product_id_fkey" FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+
+```
 
 ### Step 4 : Create your (.env) file
 
@@ -577,3 +708,4 @@ To test the project you should have a separate database for testing to avoid err
 `npm run test`
 
 <br>
+```

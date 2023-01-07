@@ -41,3 +41,5 @@ app.use("/", routes);
 app.listen(port, () => {
   console.log(`your server works successfully at ->  ${address}`);
 });
+
+export default app;

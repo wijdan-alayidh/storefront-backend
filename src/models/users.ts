@@ -43,7 +43,15 @@ export class User {
       // Close the database connection
       dbConnect.release();
 
-      return result.rows[0];
+      const userData = {
+        id: result.rows[0].id,
+        firstname: result.rows[0].firstname,
+        lastname: result.rows[0].lastname,
+        username: result.rows[0].username,
+      };
+
+      // @ts-ignore
+      return userData;
     } catch (error) {
       throw new Error(`unable to get user : ${id} -> ${error}`);
     }

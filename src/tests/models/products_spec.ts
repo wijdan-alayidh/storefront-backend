@@ -15,7 +15,10 @@ describe(`Products Model:
   it("3 - should have an create method", () => {
     expect(product.create).toBeDefined();
   });
-  it("4 - should have an delete method", () => {
+  it("4 - should have an update method", () => {
+    expect(product.update).toBeDefined();
+  });
+  it("5 - should have an delete method", () => {
     expect(product.delete).toBeDefined();
   });
 });
@@ -24,7 +27,7 @@ describe(`Products Model:
         Check functionallity of each method inside the model :
         ---------------------------------------------------------
         `, () => {
-  it("1 - Test Create methode", async () => {
+  it("1 - Test Create method", async () => {
     const result = await product.create({
       name: "Product 1",
       price: 100,
@@ -39,7 +42,7 @@ describe(`Products Model:
     });
   });
 
-  it("2 - Test Show methode", async () => {
+  it("2 - Test Show method", async () => {
     const result = await product.show("2");
     expect(result).toEqual({
       // @ts-ignore
